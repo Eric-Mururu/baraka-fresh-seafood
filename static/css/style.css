@@ -47,3 +47,23 @@ h1, h2, h3 {
 .site-footer a {
     color: var(--white);
 }
+#END OF BASE HTML
+.hero {
+    background-size: cover;
+    background-position: center;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+}
+
+.hero h1 {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.hero p,
+.hero .lead {
+    color: var(--white);
+    max-width: 40rem;
+}

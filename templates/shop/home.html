@@ -1,10 +1,17 @@
 {% extends 'shop/base.html' %}
+{% load static %}
 
 {% block title %}Home | Baraka Fresh Seafood{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <h1>Fresh Seafood, Fresh from the Ocean.</h1>
-    <p class="lead">Fresh fish, prawns, crabs and squid for hotels, restaurants and households in Watamu and Kilifi.</p>
-</div>
+<section class="hero py-5" style="background-image: linear-gradient(rgba(11, 37, 69, 0.65), rgba(11, 37, 69, 0.65)), url('{% static 'img/hero.jpg' %}');">
+    <div class="container">
+        <h1 class="display-4">Fresh Seafood, Fresh from the Ocean.</h1>
+        <p class="lead mt-3">Fresh fish, prawns, crabs and squid for hotels, restaurants and households in Watamu and Kilifi. Family business supplying the Watamu coast since 2015.</p>
+        <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+            <a class="btn btn-light btn-lg" href="#">View Products</a>
+            <a class="btn btn-order btn-lg" href="https://wa.me/254700000000?text=Hello%20Baraka%20Fresh%20Seafood%2C%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener">Order via WhatsApp</a>
+        </div>
+    </div>
+</section>
 {% endblock %}
