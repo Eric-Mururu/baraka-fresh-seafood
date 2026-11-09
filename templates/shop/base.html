@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Baraka Fresh Seafood{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-ocean">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'home' %}">Baraka Fresh Seafood</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Products &amp; Prices</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact &amp; Order Enquiry</a></li>
+                <li class="nav-item ms-lg-3">
+                    <a class="btn btn-order" href="https://wa.me/254700000000?text=Hello%20Baraka%20Fresh%20Seafood%2C%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener">Order via WhatsApp</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer py-4 mt-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h5 class="text-white">Baraka Fresh Seafood</h5>
+                <p class="mb-0">Family business supplying fresh seafood along the Watamu coast since 2015.</p>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-white">Contact</h5>
+                <p class="mb-1">Phone / WhatsApp: 0700 000 000 (sample)</p>
+                <p class="mb-1">Email: orders@barakaseafood.example</p>
+                <p class="mb-0">Watamu, near the fish landing site</p>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-white">Hours and Areas</h5>
+                <p class="mb-1">Monday to Saturday: 6:00 AM to 6:00 PM</p>
+                <p class="mb-1">Sunday: Closed</p>
+                <p class="mb-0">Delivery in Watamu and Kilifi</p>
+            </div>
+        </div>
+        <hr class="border-light">
+        <p class="small mb-1">Demo website for a fictional business, built as a practice project.</p>
+        <p class="small mb-0">&copy; 2026 Baraka Fresh Seafood (demo). All business details and prices are sample content.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

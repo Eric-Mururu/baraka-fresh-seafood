@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baraka Fresh Seafood</title>
-</head>
-<body>
-    <h1>Baraka Fresh Seafood</h1>
-    <p>Fresh seafood, fresh from the ocean.</p>
-</body>
-</html>
+{% extends 'shop/base.html' %}
+
+{% block title %}Home | Baraka Fresh Seafood{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1>Fresh Seafood, Fresh from the Ocean.</h1>
+    <p class="lead">Fresh fish, prawns, crabs and squid for hotels, restaurants and households in Watamu and Kilifi.</p>
+</div>
+{% endblock %}

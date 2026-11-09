@@ -1,0 +1,40 @@
+:root {
+    --ocean-blue: #0A5C8A;
+    --white: #FFFFFF;
+    --coral: #E4572E;
+    --navy: #0B2545;
+}
+
+body {
+    color: var(--navy);
+}
+
+h1, h2, h3 {
+    color: var(--ocean-blue);
+}
+
+.bg-ocean {
+    background-color: var(--ocean-blue);
+}
+
+.btn-order {
+    background-color: var(--coral);
+    border-color: var(--coral);
+    color: var(--white);
+    font-weight: 600;
+}
+
+.btn-order:hover {
+    background-color: #C94724;
+    border-color: #C94724;
+    color: var(--white);
+}
+
+.site-footer {
+    background-color: var(--navy);
+    color: var(--white);
+}
+
+.site-footer a {
+    color: var(--white);
+}
