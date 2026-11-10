@@ -1,3 +1,4 @@
+/* ===== Colour palette ===== */
 :root {
     --ocean-blue: #0A5C8A;
     --white: #FFFFFF;
@@ -5,16 +6,7 @@
     --navy: #0B2545;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: var(--white);
-}
-
-.navbar-dark .navbar-nav .nav-link:hover {
-    text-decoration: underline;
-}
-
-
-
+/* ===== Base ===== */
 body {
     color: var(--navy);
 }
@@ -27,6 +19,16 @@ h1, h2, h3 {
     background-color: var(--ocean-blue);
 }
 
+/* ===== Navbar ===== */
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--white);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    text-decoration: underline;
+}
+
+/* ===== Buttons ===== */
 .btn-order {
     background-color: var(--coral);
     border-color: var(--coral);
@@ -40,6 +42,18 @@ h1, h2, h3 {
     color: var(--white);
 }
 
+.btn-outline-primary {
+    color: var(--ocean-blue);
+    border-color: var(--ocean-blue);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--ocean-blue);
+    border-color: var(--ocean-blue);
+    color: var(--white);
+}
+
+/* ===== Footer ===== */
 .site-footer {
     background-color: var(--navy);
     color: var(--white);
@@ -48,7 +62,10 @@ h1, h2, h3 {
 .site-footer a {
     color: var(--white);
 }
-#END OF BASE HTML
+
+/* ===== END OF BASE TEMPLATE STYLES ===== */
+
+/* ===== Hero ===== */
 .hero {
     background-size: cover;
     background-position: center;
@@ -56,7 +73,6 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     color: var(--white);
-    min-height: 70vh;
 }
 
 .hero h1 {
@@ -70,6 +86,7 @@ h1, h2, h3 {
     max-width: 40rem;
 }
 
+/* ===== Category cards ===== */
 .category-card {
     border: 0;
     border-top: 4px solid var(--ocean-blue);
@@ -80,13 +97,57 @@ h1, h2, h3 {
     box-shadow: 0 4px 14px rgba(11, 37, 69, 0.2);
 }
 
-.btn-outline-primary {
+/* ===== Why Choose Us ===== */
+.why-icon {
+    font-size: 2.5rem;
     color: var(--ocean-blue);
-    border-color: var(--ocean-blue);
 }
 
-.btn-outline-primary:hover {
+/* ===== How to Order ===== */
+.how-to-order {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.how-to-order .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    .how-to-order .container {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+.step-number {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
     background-color: var(--ocean-blue);
-    border-color: var(--ocean-blue);
+    color: var(--white);
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-link {
+    font-size: 1.75rem;
+    color: var(--coral);
+    line-height: 1;
+}
+
+
+/* ===== Page banner (inner pages) ===== */
+.page-banner {
+    background-color: var(--ocean-blue);
+    color: var(--white);
+}
+
+.page-banner h1,
+.page-banner .lead {
     color: var(--white);
 }

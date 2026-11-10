@@ -9,7 +9,7 @@
         <h1 class="display-4">Fresh Seafood, Fresh from the Ocean.</h1>
         <p class="lead mt-3">Fresh fish, prawns, crabs and squid for hotels, restaurants and households in Watamu and Kilifi. Family business supplying the Watamu coast since 2015.</p>
         <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
-            <a class="btn btn-light btn-lg" href="#">View Products</a>
+            <a class="btn btn-light btn-lg" href="{% url 'products' %}">View Products</a>
             <a class="btn btn-order btn-lg" href="https://wa.me/254700000000?text=Hello%20Baraka%20Fresh%20Seafood%2C%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener">Order via WhatsApp</a>
         </div>
     </div>
@@ -28,7 +28,7 @@
                         <p class="card-text">Red snapper, kingfish and tilapia.</p>
                     </div>
                     <div class="card-footer bg-transparent border-0 pb-3">
-                        <a href="#" class="btn btn-outline-primary btn-sm">View prices</a>
+                        <a href="{% url 'products' %}" class="btn btn-outline-primary btn-sm">View prices</a>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                         <p class="card-text">Jumbo and medium prawns.</p>
                     </div>
                     <div class="card-footer bg-transparent border-0 pb-3">
-                        <a href="#" class="btn btn-outline-primary btn-sm">View prices</a>
+                        <a href="{% url 'products' %}" class="btn btn-outline-primary btn-sm">View prices</a>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         <p class="card-text">Fresh mud crab.</p>
                     </div>
                     <div class="card-footer bg-transparent border-0 pb-3">
-                        <a href="#" class="btn btn-outline-primary btn-sm">View prices</a>
+                        <a href="{% url 'products' %}" class="btn btn-outline-primary btn-sm">View prices</a>
                     </div>
                 </div>
             </div>
@@ -61,11 +61,112 @@
                         <p class="card-text">Fresh squid, cleaned on request.</p>
                     </div>
                     <div class="card-footer bg-transparent border-0 pb-3">
-                        <a href="#" class="btn btn-outline-primary btn-sm">View prices</a>
+                        <a href="{% url 'products' %}" class="btn btn-outline-primary btn-sm">View prices</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Why Choose Us?</h2>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 text-center">
+            <div class="col">
+                <div class="why-icon mb-3"><i class="bi bi-water"></i></div>
+                <h3 class="h5">Fresh Seafood Supply</h3>
+                <p>Fish, prawns, crabs and squid supplied fresh from the Watamu coast.</p>
+            </div>
+            <div class="col">
+                <div class="why-icon mb-3"><i class="bi bi-patch-check"></i></div>
+                <h3 class="h5">Quality Products</h3>
+                <p>Carefully handled seafood for hotels, restaurants and households.</p>
+            </div>
+            <div class="col">
+                <div class="why-icon mb-3"><i class="bi bi-house-heart"></i></div>
+                <h3 class="h5">Family Business Since 2015</h3>
+                <p>A local family business serving the Watamu and Kilifi coast.</p>
+            </div>
+            <div class="col">
+                <div class="why-icon mb-3"><i class="bi bi-whatsapp"></i></div>
+                <h3 class="h5">Convenient Ordering</h3>
+                <p>Order quickly through WhatsApp, with delivery or collection.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how-to-order mt-5 mb-5">
+    <div class="container">
+        <h2 class="text-center mb-2">How to Order</h2>
+        <p class="text-center mb-5">Four simple steps, all from your phone.</p>
+
+        <div class="row row-cols-1 row-cols-lg-7 g-3 align-items-center text-center justify-content-center">
+            <div class="col-lg">
+                <div class="step-number mx-auto mb-3">1</div>
+                <h3 class="h5">Browse Products</h3>
+                <p>See the fish, prawns, crabs and squid we supply.</p>
+            </div>
+            <div class="col-lg-auto step-link"><i class="bi bi-arrow-right d-none d-lg-block"></i><i class="bi bi-arrow-down d-lg-none"></i></div>
+            <div class="col-lg">
+                <div class="step-number mx-auto mb-3">2</div>
+                <h3 class="h5">Check Prices</h3>
+                <p>Every product has a clear price per kilogram.</p>
+            </div>
+            <div class="col-lg-auto step-link"><i class="bi bi-arrow-right d-none d-lg-block"></i><i class="bi bi-arrow-down d-lg-none"></i></div>
+            <div class="col-lg">
+                <div class="step-number mx-auto mb-3">3</div>
+                <h3 class="h5">Contact Us on WhatsApp</h3>
+                <p>Send your order and delivery location. Minimum order is 2 kg.</p>
+            </div>
+            <div class="col-lg-auto step-link"><i class="bi bi-arrow-right d-none d-lg-block"></i><i class="bi bi-arrow-down d-lg-none"></i></div>
+            <div class="col-lg">
+                <div class="step-number mx-auto mb-3">4</div>
+                <h3 class="h5">Confirm Your Order</h3>
+                <p>We confirm your order, then deliver or arrange collection.</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a class="btn btn-order btn-lg" href="https://wa.me/254700000000?text=Hello%20Baraka%20Fresh%20Seafood%2C%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener">Order via WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 category-card">
+                    <div class="card-body">
+                        <h2 class="h4"><i class="bi bi-geo-alt me-2"></i>Our Service Areas</h2>
+                        <p class="mb-2">We deliver fresh seafood within:</p>
+                        <ul class="mb-3">
+                            <li>Watamu</li>
+                            <li>Kilifi</li>
+                        </ul>
+                        <p class="mb-0">Prefer to collect? Collection is available near the Watamu fish landing site.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 category-card">
+                    <div class="card-body">
+                        <h2 class="h4"><i class="bi bi-clock me-2"></i>Opening Hours</h2>
+                        <ul class="list-unstyled mb-3">
+                            <li><strong>Monday to Saturday:</strong> 6:00 AM to 6:00 PM</li>
+                            <li><strong>Sunday:</strong> Closed</li>
+                        </ul>
+                        <p class="mb-0">Payment by M-Pesa or cash on delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 {% endblock %}
