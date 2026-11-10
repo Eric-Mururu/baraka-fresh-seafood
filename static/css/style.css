@@ -69,3 +69,24 @@ h1, h2, h3 {
     color: var(--white);
     max-width: 40rem;
 }
+
+.category-card {
+    border: 0;
+    border-top: 4px solid var(--ocean-blue);
+    box-shadow: 0 2px 8px rgba(11, 37, 69, 0.12);
+}
+
+.category-card:hover {
+    box-shadow: 0 4px 14px rgba(11, 37, 69, 0.2);
+}
+
+.btn-outline-primary {
+    color: var(--ocean-blue);
+    border-color: var(--ocean-blue);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--ocean-blue);
+    border-color: var(--ocean-blue);
+    color: var(--white);
+}
