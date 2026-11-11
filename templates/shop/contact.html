@@ -1,0 +1,125 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Contact &amp; Order Enquiry | Baraka Fresh Seafood{% endblock %}
+
+{% block content %}
+<section class="page-banner py-5">
+    <div class="container">
+        <h1>Contact Us or Place Your Order</h1>
+        <p class="lead mb-0">Call, message us on WhatsApp, or send an order enquiry. We are open Monday to Saturday, 6:00 AM to 6:00 PM.</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Contact Information</h2>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 text-center">
+            <div class="col">
+                <div class="why-icon mb-3"><i class="bi bi-telephone"></i></div>
+                <h3 class="h5">Phone</h3>
+                <p><a href="tel:+254700000000">0700 000 000</a> (sample)</p>
+            </div>
+            <div class="col">
+                <div class="why-icon mb-3"><i class="bi bi-whatsapp"></i></div>
+                <h3 class="h5">WhatsApp</h3>
+                <p><a href="https://wa.me/254700000000" target="_blank" rel="noopener">0700 000 000</a> (sample)</p>
+            </div>
+            <div class="col">
+                <div class="why-icon mb-3"><i class="bi bi-envelope"></i></div>
+                <h3 class="h5">Email</h3>
+                <p><a href="mailto:orders@barakaseafood.example">orders@barakaseafood.example</a></p>
+            </div>
+            <div class="col">
+                <div class="why-icon mb-3"><i class="bi bi-geo-alt"></i></div>
+                <h3 class="h5">Location</h3>
+                <p>Watamu, near the fish landing site</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2>Prefer Ordering Directly?</h2>
+        <p class="mb-4">Message us on WhatsApp and your order starts with one tap.</p>
+        <a class="btn btn-order btn-lg" href="https://wa.me/254700000000?text=Hello%20Baraka%20Fresh%20Seafood%2C%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener">Order via WhatsApp</a>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card category-card">
+                    <div class="card-body p-4">
+                        <h2 class="mb-1">Order Enquiry</h2>
+                        <p class="mb-4">Fill in the form and we will get back to you. Minimum order is 2 kg.</p>
+
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="customer-name" class="form-label">Your name</label>
+                                    <input type="text" class="form-control" id="customer-name" name="customer_name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email address (optional)</label>
+                                    <input type="email" class="form-control" id="email" name="email">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="customer-type" class="form-label">Customer type</label>
+                                    <select class="form-select" id="customer-type" name="customer_type" required>
+                                        <option value="" selected disabled>Choose one</option>
+                                        <option>Hotel</option>
+                                        <option>Restaurant</option>
+                                        <option>Household</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="product" class="form-label">Seafood product</label>
+                                    <select class="form-select" id="product" name="product" required>
+                                        <option value="" selected disabled>Choose a product</option>
+                                        <option>Red Snapper</option>
+                                        <option>Kingfish</option>
+                                        <option>Tilapia</option>
+                                        <option>Jumbo Prawns</option>
+                                        <option>Medium Prawns</option>
+                                        <option>Mud Crab</option>
+                                        <option>Fresh Squid</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="quantity" class="form-label">Quantity (kg)</label>
+                                    <input type="number" class="form-control" id="quantity" name="quantity" min="2" step="1" placeholder="Minimum 2" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="location" class="form-label">Delivery location</label>
+                                    <input type="text" class="form-control" id="location" name="location" placeholder="Watamu, Kilifi or collection" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="date" class="form-label">Preferred delivery or collection date</label>
+                                    <input type="date" class="form-control" id="date" name="date" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="notes" class="form-label">Additional instructions (optional)</label>
+                                    <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-order btn-lg w-100">Submit Enquiry</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
