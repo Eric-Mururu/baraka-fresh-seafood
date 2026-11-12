@@ -33,6 +33,9 @@ class OrderEnquiryForm(forms.ModelForm):
             'preferred_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}, format='%Y-%m-%d'),
             'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
+        error_messages = {
+            'quantity_kg': {'min_value': 'The minimum order is 2 kg.'},
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
