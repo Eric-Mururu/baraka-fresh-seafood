@@ -1,0 +1,101 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content_title %}{% endblock %}
+
+{% block content %}
+<div class="dashboard-heading">
+    <div>
+        <p class="dashboard-eyebrow">BARAKA FRESH SEAFOOD</p>
+        <h1>Operations dashboard</h1>
+        <p>Manage customer enquiries and keep daily operations moving.</p>
+    </div>
+    <a class="dashboard-primary-action" href="{% url 'admin:shop_orderenquiry_changelist' %}">Manage enquiries <span aria-hidden="true">→</span></a>
+</div>
+
+<section class="dashboard-stats" aria-label="Enquiry summary">
+    <article class="dashboard-stat">
+        <span class="stat-icon stat-icon-blue" aria-hidden="true">01</span>
+        <div><p>Total enquiries</p><strong>{{ dashboard_total }}</strong></div>
+    </article>
+    <article class="dashboard-stat">
+        <span class="stat-icon stat-icon-coral" aria-hidden="true">02</span>
+        <div><p>Awaiting review</p><strong>{{ dashboard_open }}</strong></div>
+    </article>
+    <article class="dashboard-stat">
+        <span class="stat-icon stat-icon-navy" aria-hidden="true">03</span>
+        <div><p>Reviewed</p><strong>{{ dashboard_handled }}</strong></div>
+    </article>
+</section>
+
+<section class="dashboard-panel">
+    <div class="dashboard-panel-heading">
+        <div>
+            <h2>Recent enquiries</h2>
+            <p>Latest customer requests submitted to the website.</p>
+        </div>
+        <a href="{% url 'admin:shop_orderenquiry_changelist' %}">View all</a>
+    </div>
+    <div class="dashboard-table-wrap">
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Delivery date</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enquiry in dashboard_recent %}
+                    <tr>
+                        <td>
+                            <a class="dashboard-customer" href="{% url 'admin:shop_orderenquiry_change' enquiry.pk %}">{{ enquiry.customer_name }}</a>
+                            <span class="dashboard-subtext">{{ enquiry.phone }}</span>
+                        </td>
+                        <td>{{ enquiry.get_product_display }}</td>
+                        <td>{{ enquiry.quantity_kg }} kg</td>
+                        <td>{{ enquiry.preferred_date|date:"j M Y" }}</td>
+                        <td>
+                            {% if enquiry.is_handled %}
+                                <span class="dashboard-status status-reviewed">Reviewed</span>
+                            {% else %}
+                                <span class="dashboard-status status-received">Received</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td class="dashboard-empty" colspan="5">No enquiries yet. New customer enquiries will appear here.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="dashboard-apps">
+    <div class="dashboard-apps-heading">
+        <h2>Administration</h2>
+        <p>Manage website records and staff access.</p>
+    </div>
+    {% for app in app_list %}
+        <div class="dashboard-app">
+            <h3>{{ app.name }}</h3>
+            <div class="dashboard-app-links">
+                {% for model in app.models %}
+                    <div class="dashboard-app-link">
+                        {% if model.admin_url %}
+                            <a href="{{ model.admin_url }}">{{ model.name }}</a>
+                        {% else %}
+                            <span>{{ model.name }}</span>
+                        {% endif %}
+                        {% if model.add_url %}<a class="dashboard-add-link" href="{{ model.add_url }}">Add</a>{% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% empty %}
+        <p>You do not have permission to manage any records.</p>
+    {% endfor %}
+</section>
+{% endblock %}

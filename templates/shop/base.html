@@ -1,66 +1,355 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block title %}Baraka Fresh Seafood{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <meta name="description" content="{% block meta_description %}Baraka Fresh Seafood supplies fresh fish, prawns, crabs and squid across Watamu and Kilifi. Contact us to place your order.{% endblock %}">
+
+    <meta name="theme-color" content="#0A5C8A">
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_css %}{% endblock %}
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-ocean">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="{% url 'home' %}">Baraka Fresh Seafood</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'products' %}">Products &amp; Prices</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact &amp; Order Enquiry</a></li>
-                <li class="nav-item ms-lg-3">
-                    <a class="btn btn-order" href="https://wa.me/254700000000?text=Hello%20Baraka%20Fresh%20Seafood%2C%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener">Order via WhatsApp</a>
-                </li>
-            </ul>
+    <!-- =====================================================
+         NAVIGATION BAR
+    ====================================================== -->
+
+    <nav class="navbar navbar-expand-xl navbar-light site-navbar">
+
+        <div class="container">
+
+            <!-- Website Brand -->
+            <a class="navbar-brand site-brand" href="{% url 'home' %}">
+                <span class="brand-name">
+                    Baraka <span class="brand-accent">Fresh </span><span class="brand-seafood">Seafood</span>
+                </span>
+            </a>
+
+
+            <!-- Mobile Navigation Toggle -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNav"
+                aria-controls="mainNav"
+                aria-expanded="false"
+                aria-label="Toggle main navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="mainNav">
+
+                <ul class="navbar-nav ms-xl-auto align-items-xl-center">
+
+                    <!-- Home -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link{% if request.resolver_match.url_name == 'home' %} active{% endif %}"
+                            href="{% url 'home' %}"
+                            {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}
+                        >
+                            Home
+                        </a>
+                    </li>
+
+
+                    <!-- Products -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link{% if request.resolver_match.url_name == 'products' %} active{% endif %}"
+                            href="{% url 'products' %}"
+                            {% if request.resolver_match.url_name == 'products' %}aria-current="page"{% endif %}
+                        >
+                            Products &amp; Prices
+                        </a>
+                    </li>
+
+
+                    <!-- About -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link{% if request.resolver_match.url_name == 'about' %} active{% endif %}"
+                            href="{% url 'about' %}"
+                            {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}
+                        >
+                            About
+                        </a>
+                    </li>
+
+
+                    <!-- Contact -->
+                    <li class="nav-item">
+                        <a
+                            class="nav-link{% if request.resolver_match.url_name == 'contact' %} active{% endif %}"
+                            href="{% url 'contact' %}"
+                            {% if request.resolver_match.url_name == 'contact' %}aria-current="page"{% endif %}
+                        >
+                            Contact
+                        </a>
+                    </li>
+
+
+                    <!-- Authenticated User Navigation -->
+                    {% if user.is_authenticated %}
+
+                        <!-- My Account -->
+                        <li class="nav-item account-nav-item">
+                            <a
+                                class="nav-link{% if request.resolver_match.url_name == 'account' %} active{% endif %}"
+                                href="{% url 'account' %}"
+                                {% if request.resolver_match.url_name == 'account' %}aria-current="page"{% endif %}
+                            >
+                                <i class="bi bi-person-circle me-1" aria-hidden="true"></i>
+                                My account
+                            </a>
+                        </li>
+
+
+                        <!-- Logout -->
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+
+                                <button
+                                    class="btn btn-link nav-link"
+                                    type="submit"
+                                >
+                                    <i class="bi bi-box-arrow-right me-1" aria-hidden="true"></i>
+                                    Log out
+                                </button>
+                            </form>
+                        </li>
+
+                    {% else %}
+
+                        <!-- Login -->
+                        <li class="nav-item account-nav-item">
+                            <a
+                                class="nav-link{% if request.resolver_match.url_name == 'login' %} active{% endif %}"
+                                href="{% url 'login' %}"
+                                {% if request.resolver_match.url_name == 'login' %}aria-current="page"{% endif %}
+                            >
+                                Log in
+                            </a>
+                        </li>
+
+
+                        <!-- Register -->
+                        <li class="nav-item">
+                            <a
+                                class="btn btn-account ms-xl-1"
+                                href="{% url 'register' %}"
+                            >
+                                Register
+                            </a>
+                        </li>
+
+                    {% endif %}
+
+
+                    <!-- WhatsApp Order Button -->
+                    <li class="nav-item order-nav-item">
+
+                        <a
+                            class="btn btn-order"
+                            href="https://wa.me/254700000000?text=Hello%20Baraka%20Fresh%20Seafood%2C%20I%20would%20like%20to%20place%20an%20order"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i class="bi bi-whatsapp me-2" aria-hidden="true"></i>
+                            Order via WhatsApp
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
         </div>
-    </div>
-</nav>
 
-<main>
-    {% block content %}{% endblock %}
-</main>
+    </nav>
 
-<footer class="site-footer py-4 mt-4">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <h5 class="text-white">Baraka Fresh Seafood</h5>
-                <p class="mb-0">Family business supplying fresh seafood along the Watamu coast since 2015.</p>
-            </div>
-            <div class="col-md-4">
-                <h5 class="text-white">Contact</h5>
-                <p class="mb-1">Phone / WhatsApp: 0700 000 000 (sample)</p>
-                <p class="mb-1">Email: orders@barakaseafood.example</p>
-                <p class="mb-0">Watamu, near the fish landing site</p>
-            </div>
-            <div class="col-md-4">
-                <h5 class="text-white">Hours and Areas</h5>
-                <p class="mb-1">Monday to Saturday: 6:00 AM to 6:00 PM</p>
-                <p class="mb-1">Sunday: Closed</p>
-                <p class="mb-0">Delivery in Watamu and Kilifi</p>
-            </div>
+
+    <!-- =====================================================
+         DJANGO MESSAGES
+    ====================================================== -->
+
+    {% if messages %}
+
+        <div class="container site-messages" aria-live="polite">
+
+            {% for message in messages %}
+
+                <div
+                    class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags|default:'info' }}{% endif %} alert-dismissible fade show mt-3 mb-0"
+                    role="alert"
+                >
+
+                    {{ message }}
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                    ></button>
+
+                </div>
+
+            {% endfor %}
+
         </div>
-        <hr class="border-light">
-        <p class="small mb-1">Demo website for a fictional business, built as a practice project.</p>
-        <p class="small mb-0">&copy; 2026 Baraka Fresh Seafood (demo). All business details and prices are sample content.</p>
-    </div>
-</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    {% endif %}
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <!-- =====================================================
+         WEBSITE FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer py-4 mt-4">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+                <!-- Business Information -->
+                <div class="col-md-4">
+
+                    <h5 class="text-white">
+                        Baraka Fresh Seafood
+                    </h5>
+
+                    <p class="mb-0">
+                        Family business supplying fresh seafood
+                        along the Watamu coast since 2015.
+                    </p>
+
+                </div>
+
+
+                <!-- Contact Information -->
+                <div class="col-md-4">
+
+                    <h5 class="text-white">
+                        Contact
+                    </h5>
+
+                    <p class="mb-1">
+                        <i class="bi bi-telephone me-2" aria-hidden="true"></i>
+                        Phone / WhatsApp: 0700 000 000 (sample)
+                    </p>
+
+                    <p class="mb-1">
+                        <i class="bi bi-envelope me-2" aria-hidden="true"></i>
+                        Email: orders@barakaseafood.example
+                    </p>
+
+                    <p class="mb-0">
+                        <i class="bi bi-geo-alt me-2" aria-hidden="true"></i>
+                        Watamu, near the fish landing site
+                    </p>
+
+                </div>
+
+
+                <!-- Business Hours -->
+                <div class="col-md-4">
+
+                    <h5 class="text-white">
+                        Hours and Delivery
+                    </h5>
+
+                    <p class="mb-1">
+                        <i class="bi bi-clock me-2" aria-hidden="true"></i>
+                        Monday to Saturday: 6:00 AM – 6:00 PM
+                    </p>
+
+                    <p class="mb-1">
+                        Sunday: Closed
+                    </p>
+
+                    <p class="mb-0">
+                        <i class="bi bi-truck me-2" aria-hidden="true"></i>
+                        Delivery in Watamu and Kilifi
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Copyright -->
+            <hr class="border-light my-4">
+
+            <div class="text-center">
+
+                <p class="small mb-1">
+                    Demo website for a fictional business,
+                    built as a practice project.
+                </p>
+
+                <p class="small mb-0">
+                    &copy; {% now "Y" %} Baraka Fresh Seafood.
+                    All business details and prices are sample content.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    {% block extra_js %}{% endblock %}
+
 </body>
+
 </html>

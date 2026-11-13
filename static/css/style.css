@@ -1,175 +1,839 @@
-/* ===== Colour palette ===== */
+
+/* =========================================================
+   BARAKA FRESH SEAFOOD
+   Main Website Stylesheet
+   Framework: Bootstrap 5.3.3
+   ========================================================= */
+
+
+/* =========================================================
+   1. COLOUR PALETTE & DESIGN VARIABLES
+   ========================================================= */
+
 :root {
     --ocean-blue: #0A5C8A;
+    --ocean-dark: #08466B;
     --white: #FFFFFF;
     --coral: #E4572E;
+    --coral-dark: #C94724;
     --navy: #0B2545;
+
+    --light-bg: #F4F7FA;
+    --border-color: #DCE4EB;
+    --muted-text: #536779;
+
+    --shadow-sm: 0 2px 8px rgba(11, 37, 69, 0.08);
+    --shadow-md: 0 4px 18px rgba(11, 37, 69, 0.12);
+    --shadow-lg: 0 8px 28px rgba(11, 37, 69, 0.14);
+
+    --radius-sm: 0.45rem;
+    --radius-md: 0.65rem;
+    --radius-lg: 0.9rem;
+
+    --transition: 180ms ease;
 }
 
-/* ===== Base ===== */
+
+/* =========================================================
+   2. GLOBAL STYLES
+   ========================================================= */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
 body {
     color: var(--navy);
+    background-color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--ocean-blue);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    transition: color var(--transition);
 }
 
 .bg-ocean {
     background-color: var(--ocean-blue);
 }
 
-/* ===== Navbar ===== */
-.navbar-dark .navbar-nav .nav-link {
+
+/* =========================================================
+   3. NAVIGATION BAR
+   ========================================================= */
+
+.site-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+
+    padding-block: 0.7rem;
+
+    background-color: var(--white);
+
+    border-bottom: 1px solid var(--border-color);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* Brand */
+
+.site-brand {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1.5rem;
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.brand-name {
+    color: var(--ocean-blue);
+    font-size: 1.12rem;
+    font-weight: 750;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+}
+
+.brand-accent {
+    color: var(--ocean-blue);
+}
+
+.brand-seafood {
+    color: var(--coral-dark);
+}
+
+
+/* Navigation layout */
+
+.site-navbar .navbar-nav {
+    gap: 0.2rem;
+}
+
+
+/* Navigation links */
+
+.site-navbar .navbar-nav .nav-link {
+    position: relative;
+
+    padding: 0.65rem 0.8rem;
+
+    border-radius: var(--radius-sm);
+
+    color: var(--navy) !important;
+
+    font-size: 0.94rem;
+    font-weight: 650;
+    opacity: 1 !important;
+
+    text-decoration: none;
+
+    transition:
+        background-color var(--transition),
+        color var(--transition);
+}
+
+
+/* Navigation hover and focus */
+
+.site-navbar .navbar-nav .nav-link:hover,
+.site-navbar .navbar-nav .nav-link:focus-visible {
+    color: var(--ocean-blue) !important;
+    background-color: rgba(10, 92, 138, 0.08);
+}
+
+
+/* Active navigation link */
+
+.site-navbar .navbar-nav .nav-link.active {
+    color: var(--ocean-blue) !important;
+    background-color: rgba(10, 92, 138, 0.08);
+    font-weight: 700;
+}
+
+
+/* Desktop navigation underline */
+
+@media (min-width: 1200px) {
+
+    .site-navbar .navbar-nav .nav-link::after {
+        position: absolute;
+        right: 0.8rem;
+        bottom: 0.2rem;
+        left: 0.8rem;
+
+        height: 2px;
+
+        background-color: var(--ocean-blue);
+
+        content: "";
+
+        transform: scaleX(0);
+        transform-origin: center;
+
+        transition: transform var(--transition);
+    }
+
+    .site-navbar .navbar-nav .nav-link:hover::after,
+    .site-navbar .navbar-nav .nav-link:focus-visible::after,
+    .site-navbar .navbar-nav .nav-link.active::after {
+        transform: scaleX(1);
+    }
+}
+
+
+/* Account navigation separator */
+
+.site-navbar .account-nav-item {
+    margin-left: 0.35rem;
+    padding-left: 0.35rem;
+
+    border-left: 1px solid var(--border-color);
+}
+
+
+/* Logout form and button */
+
+.site-navbar .navbar-nav form {
+    margin: 0;
+}
+
+.site-navbar .navbar-nav .btn-link.nav-link {
+    border: 0;
+    background: transparent;
+    text-decoration: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* Account button */
+
+.btn-account {
+    display: inline-block;
+
+    padding: 0.58rem 0.9rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: var(--radius-sm);
+
+    color: var(--white);
+
+    font-size: 0.88rem;
+    font-weight: 650;
+
+    text-decoration: none;
+
+    transition:
+        color var(--transition),
+        background-color var(--transition),
+        border-color var(--transition);
+}
+
+.btn-account:hover,
+.btn-account:focus-visible {
+    border-color: var(--white);
+    background-color: var(--white);
+    color: var(--ocean-blue);
+}
+
+.site-navbar .btn-account {
+    border-color: var(--ocean-blue);
+    background-color: var(--ocean-blue);
     color: var(--white);
 }
 
-.navbar-dark .navbar-nav .nav-link:hover {
-    text-decoration: underline;
+.site-navbar .btn-account:hover,
+.site-navbar .btn-account:focus-visible {
+    border-color: var(--ocean-dark);
+    background-color: var(--ocean-dark);
+    color: var(--white);
 }
 
-/* ===== Buttons ===== */
+
+/* WhatsApp navigation button */
+
+.site-navbar .order-nav-item {
+    margin-left: 0.45rem;
+}
+
+.site-navbar .btn-order {
+    padding: 0.65rem 0.95rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+}
+
+
+/* Mobile navigation toggler */
+
+.site-navbar .navbar-toggler {
+    padding: 0.45rem 0.6rem;
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+}
+
+.site-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(10, 92, 138, 0.2);
+}
+
+
+/* Mobile and tablet navigation */
+
+@media (max-width: 1199.98px) {
+
+    .site-navbar .navbar-collapse {
+        margin-top: 0.8rem;
+        padding: 0.75rem;
+
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+
+        background-color: var(--white);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .site-navbar .navbar-nav {
+        gap: 0.15rem;
+    }
+
+    .site-navbar .navbar-nav .nav-link {
+        display: block;
+        padding: 0.75rem;
+    }
+
+    .site-navbar .account-nav-item {
+        margin: 0.4rem 0 0;
+        padding: 0.45rem 0 0;
+
+        border-top: 1px solid var(--border-color);
+        border-left: 0;
+    }
+
+    .site-navbar .account-nav-item + .nav-item {
+        margin-top: 0.15rem;
+    }
+
+    .site-navbar .btn-account,
+    .site-navbar .order-nav-item,
+    .site-navbar .order-nav-item .btn-order {
+        display: block;
+        width: 100%;
+        margin: 0.3rem 0 0;
+        text-align: center;
+    }
+
+    .site-navbar .navbar-nav form,
+    .site-navbar .navbar-nav form .nav-link {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+
+/* =========================================================
+   4. BUTTONS
+   ========================================================= */
+
 .btn-order {
+    display: inline-block;
+
+    padding: 0.7rem 1.2rem;
+
+    border: 1px solid var(--coral);
+    border-radius: var(--radius-sm);
+
     background-color: var(--coral);
-    border-color: var(--coral);
     color: var(--white);
-    font-weight: 600;
+
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        background-color var(--transition),
+        border-color var(--transition),
+        transform var(--transition);
 }
 
-.btn-order:hover {
-    background-color: #C94724;
-    border-color: #C94724;
+.btn-order:hover,
+.btn-order:focus-visible {
+    border-color: var(--coral-dark);
+    background-color: var(--coral-dark);
     color: var(--white);
+
+    transform: translateY(-1px);
 }
+
 
 .btn-outline-primary {
+    border-color: var(--ocean-blue);
     color: var(--ocean-blue);
-    border-color: var(--ocean-blue);
 }
 
-.btn-outline-primary:hover {
+.btn-outline-primary:hover,
+.btn-outline-primary:focus-visible {
+    border-color: var(--ocean-blue);
     background-color: var(--ocean-blue);
-    border-color: var(--ocean-blue);
     color: var(--white);
 }
 
-/* ===== Footer ===== */
-.site-footer {
-    background-color: var(--navy);
-    color: var(--white);
-}
 
-.site-footer a {
-    color: var(--white);
-}
+/* =========================================================
+   5. HERO SECTION
+   ========================================================= */
 
-/* ===== END OF BASE TEMPLATE STYLES ===== */
-
-/* ===== Hero ===== */
 .hero {
-    background-size: cover;
-    background-position: center;
-    min-height: 70vh;
     display: flex;
     align-items: center;
+
+    min-height: 70vh;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
     color: var(--white);
 }
 
 .hero h1 {
     color: var(--white);
-    font-weight: 700;
+    font-weight: 750;
 }
 
 .hero p,
 .hero .lead {
-    color: var(--white);
     max-width: 40rem;
+    color: var(--white);
 }
 
-/* ===== Category cards ===== */
+
+/* =========================================================
+   6. PAGE BANNERS
+   ========================================================= */
+
+.page-banner {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+
+    background-color: var(--ocean-blue);
+    color: var(--white);
+}
+
+.page-banner h1,
+.page-banner h2,
+.page-banner .lead {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   7. CATEGORY CARDS
+   ========================================================= */
+
 .category-card {
+    height: 100%;
+
     border: 0;
     border-top: 4px solid var(--ocean-blue);
-    box-shadow: 0 2px 8px rgba(11, 37, 69, 0.12);
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        box-shadow var(--transition),
+        transform var(--transition);
 }
 
 .category-card:hover {
-    box-shadow: 0 4px 14px rgba(11, 37, 69, 0.2);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
 }
 
-/* ===== Why Choose Us ===== */
+
+/* =========================================================
+   8. WHY CHOOSE US
+   ========================================================= */
+
 .why-icon {
-    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+
     color: var(--ocean-blue);
+    font-size: 2.5rem;
 }
 
-/* ===== How to Order ===== */
+.why-icon + h3 + p a {
+    color: var(--ocean-blue);
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.why-icon + h3 + p a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   9. HOW TO ORDER
+   ========================================================= */
+
 .how-to-order {
     padding-top: 4rem;
     padding-bottom: 4rem;
 }
 
 .how-to-order .container {
-    padding-left: 1.5rem;
     padding-right: 1.5rem;
-}
-
-@media (min-width: 992px) {
-    .how-to-order .container {
-        padding-left: 4rem;
-        padding-right: 4rem;
-    }
+    padding-left: 1.5rem;
 }
 
 .step-number {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background-color: var(--ocean-blue);
-    color: var(--white);
-    font-size: 1.25rem;
-    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: 3rem;
+    height: 3rem;
+
+    border-radius: 50%;
+
+    background-color: var(--ocean-blue);
+    color: var(--white);
+
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
 .step-link {
-    font-size: 1.75rem;
     color: var(--coral);
+    font-size: 1.75rem;
     line-height: 1;
 }
 
+@media (min-width: 992px) {
 
-/* ===== Page banner (inner pages) ===== */
-.page-banner {
-    background-color: var(--ocean-blue);
-    color: var(--white);
-}
-
-.page-banner h1,
-.page-banner .lead {
-    color: var(--white);
+    .how-to-order .container {
+        padding-right: 4rem;
+        padding-left: 4rem;
+    }
 }
 
 
-/* ===== Call-to-action band ===== */
+/* =========================================================
+   10. CALL TO ACTION
+   ========================================================= */
+
 .cta-band {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+
     background-color: var(--ocean-blue);
     color: var(--white);
 }
 
-.cta-band h2 {
+.cta-band h2,
+.cta-band h3 {
     color: var(--white);
 }
 
 
-.why-icon + h3 + p a {
-    color: var(--ocean-blue);
-    text-decoration: none;
-    font-weight: 600;
+/* =========================================================
+   11. FOOTER
+   ========================================================= */
+
+.site-footer {
+    padding-top: 2rem;
+
+    background-color: var(--navy);
+    color: var(--white);
 }
 
-.why-icon + h3 + p a:hover {
+.site-footer h4,
+.site-footer h5,
+.site-footer h6 {
+    color: var(--white);
+}
+
+.site-footer p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.site-footer a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    color: #FFD0C2;
     text-decoration: underline;
 }
+
+.site-footer hr {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================================
+   12. WEBSITE MESSAGES
+   ========================================================= */
+
+.site-messages {
+    position: relative;
+    z-index: 10;
+}
+
+.site-messages .alert {
+    border-radius: var(--radius-md);
+}
+
+
+/* =========================================================
+   13. CUSTOMER AUTHENTICATION
+   ========================================================= */
+
+.auth-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+
+    background-color: var(--light-bg);
+}
+
+.auth-card {
+    max-width: 34rem;
+
+    border: 0;
+    border-top: 4px solid var(--ocean-blue);
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-lg);
+}
+
+.auth-card .form-control {
+    min-height: 2.9rem;
+    border-color: var(--border-color);
+}
+
+.auth-card .form-control:focus {
+    border-color: var(--ocean-blue);
+    box-shadow: 0 0 0 0.2rem rgba(10, 92, 138, 0.15);
+}
+
+.auth-card .errorlist {
+    padding-left: 1.25rem;
+
+    color: #B02A37;
+    font-size: 0.9rem;
+}
+
+.auth-card .helptext,
+.auth-card .form-text {
+    color: var(--muted-text);
+    font-size: 0.82rem;
+}
+
+
+/* =========================================================
+   14. CUSTOMER ACCOUNT DASHBOARD
+   ========================================================= */
+
+.account-summary,
+.account-table-wrap,
+.empty-account-state {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+
+    background-color: var(--white);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.account-summary {
+    border-left: 4px solid var(--ocean-blue);
+}
+
+.account-table-wrap {
+    overflow: hidden;
+}
+
+.account-table-wrap thead th {
+    background-color: var(--light-bg);
+    color: var(--navy);
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.account-table-wrap .table > :not(caption) > * > * {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.status-pill {
+    display: inline-block;
+
+    padding: 0.35rem 0.65rem;
+
+    border-radius: 999px;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.status-open {
+    background-color: #FFF0EA;
+    color: #A63E20;
+}
+
+.status-handled {
+    background-color: #E6F3EB;
+    color: #28623E;
+}
+
+.empty-account-state {
+    padding: 2rem;
+    color: var(--ocean-blue);
+}
+
+
+/* =========================================================
+   15. RESPONSIVE ADJUSTMENTS
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+
+    .brand-name {
+        font-size: 1rem;
+    }
+
+    .hero {
+        min-height: 55vh;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .page-banner {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .how-to-order {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    .account-table-wrap {
+        overflow-x: auto;
+    }
+}
+
+
+/* =========================================================
+   16. ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+
+
+/* ===== Final Navbar Colour Override ===== */
+
+.site-navbar {
+    --bs-navbar-color: var(--navy);
+    --bs-navbar-hover-color: var(--ocean-blue);
+    --bs-navbar-active-color: var(--ocean-blue);
+    --bs-navbar-disabled-color: var(--muted-text);
+}
+
+.site-navbar .navbar-nav .nav-link,
+.site-navbar .navbar-nav .nav-link:visited,
+.site-navbar .navbar-nav .nav-link.active {
+    color: var(--navy) !important;
+    opacity: 1 !important;
+    font-weight: 650 !important;
+}
+
+.site-navbar .navbar-nav .nav-link.active {
+    color: var(--ocean-blue) !important;
+}
+
+/* Logout button */
+.site-navbar .navbar-nav button.nav-link {
+    color: var(--navy) !important;
+}
+
+/* Hover effect */
+.site-navbar .navbar-nav .nav-link:hover {
+    color: var(--ocean-blue) !important;
+    background-color: rgba(10, 92, 138, 0.08);
+}
+
+
+/* ===== Navbar fit on laptop screens ===== */
+.site-navbar .navbar-nav .nav-link,
+.site-navbar .btn-account,
+.site-navbar .btn-order {
+    white-space: nowrap;
+}
+
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+
+    .site-navbar .navbar-nav .nav-link {
+        padding: 0.65rem 0.55rem;
+        font-size: 0.9rem;
+    }
+
+    .site-navbar .btn-account,
+    .site-navbar .btn-order {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .brand-name {
+        font-size: 1.05rem;
+    }
+}
+
+
+/* =========================================================
+   END OF BARAKA FRESH SEAFOOD STYLESHEET
+   ========================================================= */

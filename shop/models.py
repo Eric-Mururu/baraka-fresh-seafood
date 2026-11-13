@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -31,9 +32,18 @@ class OrderEnquiry(models.Model):
     notes = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_handled = models.BooleanField(default=False)
+    customer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name='order_enquiries',
+    )
 
     class Meta:
         ordering = ['-created_at']
+        verbose_name = 'order enquiry'
+        verbose_name_plural = 'order enquiries'
 
     def __str__(self):
         return f"{self.customer_name} - {self.product} ({self.quantity_kg} kg)"
